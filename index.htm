@@ -1,0 +1,166 @@
+<body>
+<section class="tab-group">
+  <div class="tab-container">
+    <button type="button" class="tab">Fynch, V.</button>
+    <button type="button" class="tab">Example, E.</button>
+    <button type="button" class="tab">Doe, Jo.</button>
+    <button type="button" class="tab">Doe, Ja.</button>
+  </div>
+  <div class="article-container">
+    <article class="tab-content">
+      <img src="https://via.placeholder.com/300x200?text=Image+1" alt="Fynch Image">
+      <h2>Vexx Fynch</h2>
+      <p>"A short description of this character."</p><br>
+      <a href="https://example.com/fynch" class="read-more" target="_blank"><u>OPEN FILE</u></a>
+    </article>
+    <article class="tab-content">
+      <img src="https://via.placeholder.com/300x200?text=Image+2" alt="Example Image">
+      <h2>Example Name</h2>
+      <p>"A short description of this character."</p><br>
+      <a href="https://example.com/example" class="read-more" target="_blank"><u>OPEN FILE</u></a>
+    </article>
+    <article class="tab-content">
+      <img src="https://via.placeholder.com/300x200?text=Image+3" alt="Doe Jo Image">
+      <h2>John Doe</h2>
+      <p>"A short description of this character."</p><br>
+      <a href="https://example.com/john" class="read-more" target="_blank"><u>OPEN FILE</u></a>
+    </article>
+    <article class="tab-content">
+      <img src="https://via.placeholder.com/300x200?text=Image+4" alt="Doe Ja Image">
+      <h2>Jane Doe</h2>
+      <p>"A short description of this character."</p><br>
+      <a href="https://example.com/jane" class="read-more" target="_blank"><u>OPEN FILE</u></a>
+    </article>
+  </div>
+</section>
+
+<style>
+/* General styles */
+body {
+  background-color: rgb(22, 22, 26);  
+  font-family: 'PT Mono', monospace;
+}
+
+h2 {
+  margin: 0 0 0.5em 0;
+}
+
+p {
+  margin: 0;
+}
+
+.tab-group {
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-container {
+  position: relative;
+  width: 60vw;
+  height: 50vh;
+  background-color: #eee6c7;
+  border-radius: 0 6px 6px 6px;
+}
+
+article.tab-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.333em 1.666em 2em 1em;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+article.tab-content.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tab-container {
+  height: 3em;
+  width: 60vw;
+  display: flex;
+  justify-content: flex-start;
+}
+
+button.tab {
+  border: none;
+  cursor: pointer;
+  padding: 1em;
+  outline: none;
+  transform: translateY(3px);
+  transition: transform 200ms ease;
+  border-radius: 6px 6px 0 0;
+  margin-right: 0.333em;
+  font-family: inherit;
+  background-color: #d4c59f;
+}
+
+button.tab.active {
+  background-color: #eee6c7;
+}
+
+button.tab:hover {
+  transform: translateY(0);
+}
+
+article.tab-content img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+article.tab-content.active img {
+  opacity: 1;
+}
+
+/* Style for the Read More link */
+.read-more {
+  display: inline-block;
+  padding: 5px 10px; /* Slightly increases clickable area */
+  margin: 5px 0; /* Adds space around the link */
+  text-decoration: underline;
+  color: inherit;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.read-more:hover {
+  text-decoration: none;
+  color: blue; /* Highlight color on hover */
+}
+
+/* Disable inactive links */
+.tab-content:not(.active) .read-more {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+}
+</style>
+
+<script>
+// Attach event listeners to tabs
+document.querySelectorAll('.tab-group button.tab').forEach((tab, index) => {
+  tab.addEventListener("click", () => handleTab(index));
+});
+
+function handleTab(index) {
+  // Remove active class from all tabs and articles
+  document.querySelectorAll('.tab-group button.tab, .tab-group article.tab-content').forEach(node => {
+    node.classList.remove('active');
+  });
+  
+  // Add active class to the clicked tab and corresponding article
+  document.querySelectorAll('.tab-group button.tab')[index].classList.add('active');
+  document.querySelectorAll('.tab-group article.tab-content')[index].classList.add('active');
+}
+</script>
